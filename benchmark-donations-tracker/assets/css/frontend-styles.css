@@ -1,0 +1,316 @@
+/**
+ * Frontend Styles for Benchmark Donations Tracker
+ * Optimized for dark backgrounds
+ */
+
+/* ========================================
+   MAP STYLES
+   ======================================== */
+
+.bdt-map-container {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.bdt-map-container svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.bdt-map-container path.bdt-state {
+    stroke: #333;
+    stroke-width: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.bdt-map-container path.bdt-state:hover {
+    stroke: #000;
+    stroke-width: 2px;
+    filter: brightness(1.1);
+    transform: scale(1.02);
+    transform-origin: center;
+}
+
+.bdt-map-tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-size: 14px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.bdt-map-tooltip.active {
+    opacity: 1;
+}
+
+.bdt-map-tooltip strong {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+/* Map Legend */
+.bdt-map-legend {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.bdt-legend-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.bdt-legend-scale {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.bdt-legend-gradient {
+    width: 200px;
+    height: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+.bdt-legend-min,
+.bdt-legend-max {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 600;
+}
+
+/* ========================================
+   THERMOMETER STYLES
+   ======================================== */
+
+.bdt-thermometer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    margin: 20px auto;
+}
+
+.bdt-thermometer-goal {
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.bdt-thermometer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80px;
+}
+
+.bdt-thermometer-bg {
+    width: 60px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-radius: 30px 30px 0 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.bdt-thermometer-fill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #00c19f;
+    transition: height 1s ease-out;
+    border-radius: 0 0 30px 30px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.bdt-thermometer-percentage {
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.bdt-thermometer-bulb {
+    width: 80px;
+    height: 80px;
+    background-color: #00c19f;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    margin-top: -3px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.bdt-thermometer-current {
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* ========================================
+   STATS STYLES
+   ======================================== */
+
+.bdt-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.bdt-stat-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bdt-stat-label {
+    display: block;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.bdt-stat-value {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* ========================================
+   RESPONSIVE STYLES
+   ======================================== */
+
+@media (max-width: 768px) {
+    .bdt-map-container {
+        padding: 15px;
+    }
+
+    .bdt-map-legend {
+        padding: 10px 15px;
+    }
+
+    .bdt-legend-scale {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .bdt-legend-gradient {
+        width: 150px;
+    }
+
+    .bdt-thermometer-container {
+        padding: 20px 15px;
+    }
+
+    .bdt-thermometer-bg {
+        width: 50px;
+        height: 250px;
+    }
+
+    .bdt-thermometer-bulb {
+        width: 70px;
+        height: 70px;
+    }
+
+    .bdt-stats {
+        grid-template-columns: 1fr;
+        padding: 15px;
+    }
+}
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+
+@keyframes fillUp {
+    from {
+        height: 0;
+    }
+    to {
+        height: var(--fill-height);
+    }
+}
+
+.bdt-thermometer-fill {
+    animation: fillUp 1.5s ease-out;
+}
+
+/* ========================================
+   LIGHT THEME OVERRIDES
+   ======================================== */
+
+.bdt-light-theme .bdt-map-container,
+.bdt-light-theme .bdt-map-legend,
+.bdt-light-theme .bdt-thermometer-container,
+.bdt-light-theme .bdt-stat-item {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.bdt-light-theme .bdt-legend-title,
+.bdt-light-theme .bdt-thermometer-goal,
+.bdt-light-theme .bdt-thermometer-current,
+.bdt-light-theme .bdt-stat-value {
+    color: #333;
+}
+
+.bdt-light-theme .bdt-legend-min,
+.bdt-light-theme .bdt-legend-max,
+.bdt-light-theme .bdt-stat-label {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.bdt-light-theme .bdt-map-container path.bdt-state {
+    stroke: #999;
+}
+
+.bdt-light-theme .bdt-thermometer-bg {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+.bdt-light-theme .bdt-thermometer-bulb {
+    border-color: rgba(0, 0, 0, 0.2);
+}

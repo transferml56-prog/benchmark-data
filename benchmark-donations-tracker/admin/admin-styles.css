@@ -1,0 +1,220 @@
+/**
+ * Admin Styles for Benchmark Donations Tracker
+ */
+
+.bdt-admin-wrap {
+    max-width: 1400px;
+}
+
+.bdt-admin-wrap h1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 28px;
+    margin-bottom: 25px;
+}
+
+.bdt-admin-wrap h1 .dashicons {
+    color: #00c19f;
+    font-size: 32px;
+    width: 32px;
+    height: 32px;
+}
+
+.bdt-admin-grid {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+@media (max-width: 1200px) {
+    .bdt-admin-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.bdt-card {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.bdt-card h2 {
+    margin-top: 0;
+    font-size: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.bdt-stat-box {
+    text-align: center;
+    padding: 20px;
+    background: #f7f7f7;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.bdt-stat-number {
+    font-size: 36px;
+    font-weight: bold;
+    color: #00c19f;
+    margin-bottom: 5px;
+}
+
+.bdt-stat-label {
+    font-size: 14px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.bdt-quick-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.bdt-quick-links li {
+    margin-bottom: 10px;
+}
+
+.bdt-quick-links a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+    background: #f7f7f7;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.bdt-quick-links a:hover {
+    background: #e0e0e0;
+}
+
+.bdt-quick-links .dashicons {
+    color: #00c19f;
+}
+
+/* ReadMe Page Styles */
+.bdt-readme-wrap {
+    max-width: 1200px;
+}
+
+.bdt-readme-wrap h1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 28px;
+    margin-bottom: 25px;
+}
+
+.bdt-readme-wrap h1 .dashicons {
+    color: #00c19f;
+    font-size: 32px;
+    width: 32px;
+    height: 32px;
+}
+
+.bdt-readme-content .bdt-card {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    padding: 30px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.bdt-readme-content h2 {
+    margin-top: 0;
+    font-size: 22px;
+    color: #23282d;
+    border-bottom: 2px solid #00c19f;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.bdt-readme-content h3 {
+    font-size: 18px;
+    color: #23282d;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.bdt-readme-content code {
+    background: #f7f7f7;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 14px;
+    color: #d63638;
+}
+
+.bdt-readme-content ul,
+.bdt-readme-content ol {
+    line-height: 1.8;
+}
+
+.bdt-readme-content ul li,
+.bdt-readme-content ol li {
+    margin-bottom: 10px;
+}
+
+.bdt-readme-content ul ul,
+.bdt-readme-content ol ul {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.bdt-example-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+
+.bdt-example-table th,
+.bdt-example-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.bdt-example-table thead th {
+    background: #00c19f;
+    color: white;
+    font-weight: bold;
+}
+
+.bdt-example-table tbody tr:nth-child(even) {
+    background: #f7f7f7;
+}
+
+.bdt-success-box {
+    background: linear-gradient(135deg, #e0f7f4 0%, #f0fdf9 100%);
+    border-left: 4px solid #00c19f;
+}
+
+.bdt-success-box h2 {
+    color: #00c19f;
+    border-bottom-color: #00c19f;
+}
+
+/* Form Improvements */
+.form-table th {
+    width: 200px;
+}
+
+.form-table td .description {
+    margin-top: 8px;
+    line-height: 1.6;
+}
+
+button .dashicons {
+    vertical-align: middle;
+    margin-right: 5px;
+}
