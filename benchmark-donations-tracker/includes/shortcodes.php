@@ -9,6 +9,19 @@ if (!defined('ABSPATH')) {
 }
 
 /**
+ * Get all US state codes
+ */
+function bdt_get_all_states() {
+    return array(
+        'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
+        'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD',
+        'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ',
+        'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC',
+        'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY', 'DC'
+    );
+}
+
+/**
  * US Map Shortcode
  * Usage: [benchmark_map] or [benchmark_map method="external"] or [benchmark_map method="table"]
  */
@@ -49,9 +62,12 @@ add_shortcode('benchmark_map', 'bdt_map_shortcode');
 function bdt_render_map_external($state_totals, $max_amount, $theme_color, $atts) {
     $svg_url = BDT_PLUGIN_URL . 'assets/images/us-map-sample.svg';
 
-    // Pass data to JavaScript
+    // Pass data to JavaScript - include ALL states
     $map_data = array();
-    foreach ($state_totals as $state => $amount) {
+    $all_states = bdt_get_all_states();
+
+    foreach ($all_states as $state) {
+        $amount = isset($state_totals[$state]) ? $state_totals[$state] : 0;
         $color = bdt_get_state_color($state, $amount, $max_amount, $theme_color);
         $map_data[$state] = array(
             'amount' => $amount,
@@ -65,16 +81,6 @@ function bdt_render_map_external($state_totals, $max_amount, $theme_color, $atts
     $output = '<div class="bdt-map-container bdt-map-external" style="width: ' . esc_attr($atts['width']) . ';">';
     $output .= '<div class="bdt-map-tooltip" id="bdt-map-tooltip-' . $map_id . '"></div>';
     $output .= '<object id="' . $map_id . '" data="' . esc_url($svg_url) . '" type="image/svg+xml" class="bdt-svg-object"></object>';
-    $output .= '</div>';
-
-    // Add legend
-    $output .= '<div class="bdt-map-legend">';
-    $output .= '<div class="bdt-legend-title">Donation Amount</div>';
-    $output .= '<div class="bdt-legend-scale">';
-    $output .= '<span class="bdt-legend-min">$0</span>';
-    $output .= '<div class="bdt-legend-gradient" style="background: linear-gradient(to right, #FFFFFF, ' . esc_attr($theme_color) . ');"></div>';
-    $output .= '<span class="bdt-legend-max">$' . number_format($max_amount, 0) . '</span>';
-    $output .= '</div>';
     $output .= '</div>';
 
     // Add inline script to color the SVG after it loads
@@ -138,8 +144,10 @@ function bdt_render_map_inline($state_totals, $max_amount, $theme_color, $atts) 
 
     $svg_content = file_get_contents($svg_path);
 
-    // Inject state colors and data attributes
-    foreach ($state_totals as $state => $amount) {
+    // Inject state colors and data attributes for ALL states
+    $all_states = bdt_get_all_states();
+    foreach ($all_states as $state) {
+        $amount = isset($state_totals[$state]) ? $state_totals[$state] : 0;
         $color = bdt_get_state_color($state, $amount, $max_amount, $theme_color);
         $formatted_amount = '$' . number_format($amount, 2);
 
@@ -155,16 +163,6 @@ function bdt_render_map_inline($state_totals, $max_amount, $theme_color, $atts) 
     $output .= $svg_content;
     $output .= '</div>';
 
-    // Add legend
-    $output .= '<div class="bdt-map-legend">';
-    $output .= '<div class="bdt-legend-title">Donation Amount</div>';
-    $output .= '<div class="bdt-legend-scale">';
-    $output .= '<span class="bdt-legend-min">$0</span>';
-    $output .= '<div class="bdt-legend-gradient" style="background: linear-gradient(to right, #FFFFFF, ' . esc_attr($theme_color) . ');"></div>';
-    $output .= '<span class="bdt-legend-max">$' . number_format($max_amount, 0) . '</span>';
-    $output .= '</div>';
-    $output .= '</div>';
-
     return $output;
 }
 
@@ -174,9 +172,12 @@ function bdt_render_map_inline($state_totals, $max_amount, $theme_color, $atts) 
 function bdt_render_map_javascript($state_totals, $max_amount, $theme_color, $atts) {
     $svg_url = BDT_PLUGIN_URL . 'assets/images/us-map-sample.svg';
 
-    // Pass data to JavaScript
+    // Pass data to JavaScript - include ALL states
     $map_data = array();
-    foreach ($state_totals as $state => $amount) {
+    $all_states = bdt_get_all_states();
+
+    foreach ($all_states as $state) {
+        $amount = isset($state_totals[$state]) ? $state_totals[$state] : 0;
         $color = bdt_get_state_color($state, $amount, $max_amount, $theme_color);
         $map_data[$state] = array(
             'amount' => $amount,
@@ -190,16 +191,6 @@ function bdt_render_map_javascript($state_totals, $max_amount, $theme_color, $at
     $output = '<div class="bdt-map-container bdt-map-js" style="width: ' . esc_attr($atts['width']) . ';">';
     $output .= '<div class="bdt-map-tooltip" id="bdt-map-tooltip-' . $map_id . '"></div>';
     $output .= '<div id="' . $map_id . '" class="bdt-svg-container"></div>';
-    $output .= '</div>';
-
-    // Add legend
-    $output .= '<div class="bdt-map-legend">';
-    $output .= '<div class="bdt-legend-title">Donation Amount</div>';
-    $output .= '<div class="bdt-legend-scale">';
-    $output .= '<span class="bdt-legend-min">$0</span>';
-    $output .= '<div class="bdt-legend-gradient" style="background: linear-gradient(to right, #FFFFFF, ' . esc_attr($theme_color) . ');"></div>';
-    $output .= '<span class="bdt-legend-max">$' . number_format($max_amount, 0) . '</span>';
-    $output .= '</div>';
     $output .= '</div>';
 
     // Add inline script to load and color the SVG
@@ -293,16 +284,6 @@ function bdt_render_map_table($state_totals, $max_amount, $theme_color, $atts) {
 
     $output .= '</tbody>';
     $output .= '</table>';
-    $output .= '</div>';
-
-    // Add legend
-    $output .= '<div class="bdt-map-legend">';
-    $output .= '<div class="bdt-legend-title">Donation Amount</div>';
-    $output .= '<div class="bdt-legend-scale">';
-    $output .= '<span class="bdt-legend-min">$0</span>';
-    $output .= '<div class="bdt-legend-gradient" style="background: linear-gradient(to right, #FFFFFF, ' . esc_attr($theme_color) . ');"></div>';
-    $output .= '<span class="bdt-legend-max">$' . number_format($max_amount, 0) . '</span>';
-    $output .= '</div>';
     $output .= '</div>';
 
     return $output;
