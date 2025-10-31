@@ -114,6 +114,45 @@ function bdt_readme_page() {
             </div>
 
             <div class="bdt-card">
+                <h2>🗺️ Map Rendering Methods</h2>
+                <p>
+                    The plugin supports multiple ways to display the US map. If one method doesn't work with your WordPress setup,
+                    try another!
+                </p>
+
+                <h3>Method 1: External SVG (Default - Recommended)</h3>
+                <code>[benchmark_map method="external"]</code>
+                <p>
+                    Loads the SVG as an external file using an &lt;object&gt; tag. This bypasses WordPress content filters
+                    and works in most cases where inline SVG is truncated.
+                </p>
+
+                <h3>Method 2: JavaScript Loading</h3>
+                <code>[benchmark_map method="javascript"]</code>
+                <p>
+                    Uses JavaScript Fetch API to load and color the SVG dynamically. Great for sites with strict content
+                    security policies.
+                </p>
+
+                <h3>Method 3: Table View</h3>
+                <code>[benchmark_map method="table"]</code>
+                <p>
+                    Displays donations as a sortable table with color-coded bars. Perfect fallback if SVG rendering doesn't work.
+                    Always works regardless of WordPress configuration!
+                </p>
+
+                <h3>Method 4: Inline SVG</h3>
+                <code>[benchmark_map method="inline"]</code>
+                <p>
+                    Embeds SVG directly in the page. May be truncated by WordPress on some installations.
+                    Use this only if other methods don't work.
+                </p>
+
+                <p><strong>Recommendation:</strong> Start with <code>method="external"</code> (the default). If you see issues,
+                switch to <code>method="table"</code> for a guaranteed working display.</p>
+            </div>
+
+            <div class="bdt-card">
                 <h2>🔧 Troubleshooting</h2>
 
                 <h3>Data Not Loading?</h3>
@@ -127,9 +166,12 @@ function bdt_readme_page() {
 
                 <h3>Map Not Displaying Correctly?</h3>
                 <ul>
+                    <li><strong>Try a different rendering method:</strong> Use <code>[benchmark_map method="external"]</code> or <code>[benchmark_map method="table"]</code></li>
+                    <li>If SVG is truncated or cut off, use the external or table method instead of inline</li>
                     <li>Clear your browser cache</li>
                     <li>Check that the SVG map file exists in the plugin's assets/images folder</li>
                     <li>Try fetching the data manually again</li>
+                    <li>For BeTheme users: External or JavaScript methods work best</li>
                 </ul>
 
                 <h3>Colors Not Showing?</h3>
@@ -199,12 +241,40 @@ function bdt_readme_page() {
                 <h2>🎯 Shortcode Options</h2>
 
                 <h3>Map Shortcode</h3>
-                <code>[benchmark_map width="100%" height="auto"]</code>
-                <p>Customize the width and height as needed.</p>
+                <p><strong>Basic usage:</strong></p>
+                <code>[benchmark_map]</code>
+
+                <p><strong>With options:</strong></p>
+                <code>[benchmark_map method="external" width="100%"]</code>
+
+                <p><strong>Available options:</strong></p>
+                <ul>
+                    <li><code>method</code> - Rendering method: "external" (default), "javascript", "table", or "inline"</li>
+                    <li><code>width</code> - Container width (default: "100%")</li>
+                    <li><code>height</code> - Container height (default: "auto")</li>
+                </ul>
+
+                <p><strong>Examples:</strong></p>
+                <ul>
+                    <li><code>[benchmark_map method="external"]</code> - SVG via object tag (recommended)</li>
+                    <li><code>[benchmark_map method="javascript"]</code> - SVG via JavaScript fetch</li>
+                    <li><code>[benchmark_map method="table"]</code> - Table view (always works!)</li>
+                    <li><code>[benchmark_map method="table" width="80%"]</code> - Table view with custom width</li>
+                </ul>
 
                 <h3>Thermometer Shortcode</h3>
+                <p><strong>Basic usage:</strong></p>
+                <code>[benchmark_thermometer]</code>
+
+                <p><strong>With options:</strong></p>
                 <code>[benchmark_thermometer goal="50000" width="200px" height="400px"]</code>
-                <p>Override the default goal amount or customize dimensions.</p>
+
+                <p><strong>Available options:</strong></p>
+                <ul>
+                    <li><code>goal</code> - Override the goal amount set in settings</li>
+                    <li><code>width</code> - Thermometer width (default: "200px")</li>
+                    <li><code>height</code> - Thermometer height (default: "400px")</li>
+                </ul>
             </div>
 
             <div class="bdt-card">

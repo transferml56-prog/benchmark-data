@@ -314,3 +314,143 @@
 .bdt-light-theme .bdt-thermometer-bulb {
     border-color: rgba(0, 0, 0, 0.2);
 }
+
+/* ========================================
+   SVG OBJECT & EXTERNAL LOADING
+   ======================================== */
+
+.bdt-svg-object {
+    width: 100%;
+    height: auto;
+    display: block;
+    min-height: 400px;
+}
+
+.bdt-svg-container {
+    width: 100%;
+    min-height: 400px;
+}
+
+.bdt-svg-container svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ========================================
+   TABLE VIEW STYLES
+   ======================================== */
+
+.bdt-map-table h3 {
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 24px;
+}
+
+.bdt-states-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.bdt-states-table thead {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.bdt-states-table th {
+    padding: 12px 15px;
+    text-align: left;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.bdt-states-table td {
+    padding: 10px 15px;
+    color: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.bdt-states-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.bdt-states-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.bdt-bar-container {
+    width: 100%;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.bdt-bar {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 1s ease-out;
+    min-width: 2px;
+}
+
+/* Light theme overrides for table */
+.bdt-light-theme .bdt-map-table h3 {
+    color: #333;
+}
+
+.bdt-light-theme .bdt-states-table {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.bdt-light-theme .bdt-states-table thead {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.bdt-light-theme .bdt-states-table th {
+    color: #333;
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+.bdt-light-theme .bdt-states-table td {
+    color: #333;
+    border-bottom-color: rgba(0, 0, 0, 0.05);
+}
+
+.bdt-light-theme .bdt-states-table tbody tr:hover {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.bdt-light-theme .bdt-bar-container {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   RESPONSIVE TABLE STYLES
+   ======================================== */
+
+@media (max-width: 768px) {
+    .bdt-states-table {
+        font-size: 14px;
+    }
+
+    .bdt-states-table th,
+    .bdt-states-table td {
+        padding: 8px 10px;
+    }
+
+    .bdt-map-table h3 {
+        font-size: 20px;
+    }
+
+    .bdt-bar-container {
+        height: 15px;
+    }
+}
